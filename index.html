@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA // Clinical Longevity & Biotech Medicine</title>
+    
+    <!-- SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2225%22 fill=%22%23020617%22/><circle cx=%2250%22 cy=%2250%22 r=%2220%22 fill=%22none%22 stroke=%22%2306b6d4%22 stroke-width=%228%22/></svg>">
+
+    <!-- Tailwind & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+        }
+        .font-outfit {
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        /* --- Organic Liquid Morphing Animations --- */
+        @keyframes morph-blob-1 {
+            0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: translate(0px, 0px) rotate(0deg); }
+            33% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; transform: translate(40px, -60px) rotate(120deg); }
+            66% { border-radius: 30% 70% 40% 60% / 40% 60% 30% 70%; transform: translate(-20px, 30px) rotate(240deg); }
+        }
+        @keyframes morph-blob-2 {
+            0%, 100% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%; transform: translate(0px, 0px) rotate(0deg); }
+            50% { border-radius: 30% 70% 70% 30% / 50% 30% 70% 50%; transform: translate(-50px, 50px) rotate(-180deg); }
+        }
+        @keyframes morph-blob-3 {
+            0%, 100% { border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; transform: translate(0px, 0px) scale(1); }
+            50% { border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%; transform: translate(30px, -30px) scale(1.15); }
+        }
+
+        /* Classes for Morphing Blobs */
+        .morph-1 { animation: morph-blob-1 25s ease-in-out infinite; }
+        .morph-2 { animation: morph-blob-2 30s ease-in-out infinite; }
+        .morph-3 { animation: morph-blob-3 22s ease-in-out infinite; }
+        
+        /* Ultra-Clean Glassmorphism */
+        .premium-card {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .premium-card:hover {
+            border-color: rgba(6, 182, 212, 0.25);
+            background: rgba(15, 23, 42, 0.55);
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.1);
+        }
+
+        /* Scroll Animation States */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body.loading-active {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="text-slate-200 antialiased overflow-x-hidden loading-active">
+
+    <!-- ================= 1. INTERACTIVE PARALLAX BACKGROUND BLOBS ================= -->
+    <div id="parallax-container" class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <!-- Cyan/Teal Organic Liquid Blob -->
+        <div class="morph-1 absolute top-[5%] left-[-10%] w-[600px] md:w-[900px] h-[600px] md:h-[900px] bg-cyan-500/10 filter blur-[100px] md:blur-[140px] transition-transform duration-1000 ease-out" data-speed="-2"></div>
+        <!-- Emerald/Biotech Green Blob -->
+        <div class="morph-2 absolute bottom-[-10%] right-[-10%] w-[500px] md:w-[800px] h-[500px] md:h-[800px] bg-emerald-500/10 filter blur-[90px] md:blur-[130px] transition-transform duration-1000 ease-out" data-speed="3"></div>
+        <!-- Deep Indigo Core Blob -->
+        <div class="morph-3 absolute top-[35%] left-[30%] w-[400px] md:w-[700px] h-[400px] md:h-[700px] bg-indigo-500/5 filter blur-[100px] md:blur-[150px] transition-transform duration-1000 ease-out" data-speed="1.5"></div>
+    </div>
+
+    <!-- ================= 2. CLINICAL SPLASH LOADER ================= -->
+    <div id="splash-screen" class="fixed inset-0 z-[100] bg-[#020617] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
+        <div class="relative z-10 flex flex-col items-center space-y-6">
+            <div class="relative flex items-center justify-center w-24 h-24">
+                <div class="absolute inset-0 rounded-full border-2 border-slate-800"></div>
+                <div class="absolute inset-0 rounded-full border-t-2 border-cyan-400 animate-spin" style="animation-duration: 1.2s;"></div>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-emerald-400 opacity-20 animate-pulse"></div>
+            </div>
+            
+            <div class="text-center">
+                <h2 class="font-outfit text-4xl font-black tracking-[0.2em] text-white">AURA</h2>
+                <p class="text-[9px] uppercase tracking-[0.4em] text-cyan-400 font-bold mt-2">Biochemical Intelligence</p>
+            </div>
+
+            <!-- Dynamic Loading Status -->
+            <div class="flex flex-col items-center space-y-2.5 mt-2">
+                <span id="splash-status" class="text-[9px] uppercase tracking-[0.25em] text-slate-500 font-mono">Initializing Neural Mapping...</span>
+                <div class="w-40 bg-slate-900 h-[1.5px] rounded-full overflow-hidden relative">
+                    <div id="splash-bar" class="bg-gradient-to-r from-cyan-400 to-emerald-400 h-full w-0 transition-all duration-300"></div>
+                </div>
+                <span id="splash-percent" class="text-[10px] text-slate-400 font-mono">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 3. FIXED NAVIGATION ================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#020617]/55 backdrop-blur-xl border-b border-white/[0.04]">
+        <nav class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer">
+                <div class="w-8 h-8 bg-gradient-to-tr from-cyan-500 to-emerald-400 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/10">
+                    <svg class="w-4.5 h-4.5 text-slate-950" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-outfit text-lg font-bold tracking-tight text-white block">AURA</span>
+                    <span class="text-[7px] tracking-[0.3em] uppercase text-cyan-400 block -mt-1">Longevity Labs</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-10 text-[10px] uppercase tracking-[0.2em] font-semibold text-slate-400">
+                <a href="#paradigm" class="hover:text-cyan-400 transition-colors">Paradigm</a>
+                <a href="#suites" class="hover:text-cyan-400 transition-colors">Clinical Suites</a>
+                <a href="#diagnostics" class="hover:text-cyan-400 transition-colors">Assessment</a>
+                <a href="#membership" class="hover:text-cyan-400 transition-colors">Admissions</a>
+            </div>
+
+            <a href="#booking" class="bg-gradient-to-r from-cyan-500 to-emerald-400 hover:from-cyan-400 hover:to-emerald-300 text-slate-950 px-5 py-2.5 rounded-full text-[10px] uppercase font-extrabold tracking-wider transition-all duration-300 shadow-lg shadow-cyan-500/10">
+                Intake Portal
+            </a>
+        </nav>
+    </header>
+
+    <!-- ================= 4. HERO SECTION WITH IMAGE & BIOMETRICS ================= -->
+    <section class="relative min-h-screen flex items-center justify-center pt-32 pb-16 overflow-hidden z-10">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-16 items-center w-full">
+            <div class="lg:col-span-7 text-left space-y-8">
+                <div class="inline-flex items-center space-x-2.5 bg-cyan-500/5 border border-cyan-500/15 px-3.5 py-1.5 rounded-full">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="text-[9px] uppercase tracking-widest font-extrabold text-cyan-300">Biotech Cohort 2026</span>
+                </div>
+                <h1 class="text-4xl md:text-7xl lg:text-8xl font-outfit font-black tracking-tight text-white leading-[0.95] uppercase">
+                    recode your<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-400">biology</span>
+                </h1>
+                <p class="text-slate-400 text-sm md:text-base max-w-lg font-light leading-relaxed">
+                    A clinical infrastructure engineered to monitor and reverse cellular degradation. We pair advanced epigenetic analysis with tailored molecular therapies to extend peak human performance.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                    <a href="#booking" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-xs transition-all duration-300 text-center shadow-md shadow-cyan-500/20">
+                        Request Intake Analysis
+                    </a>
+                    <a href="#diagnostics" class="border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-xs transition-all duration-300 text-center">
+                        Diagnostic Engine
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Premium Visual Card -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="relative w-full max-w-sm aspect-[4/5] bg-slate-950/40 backdrop-blur-2xl rounded-3xl p-6 border border-white/[0.06] flex flex-col justify-between overflow-hidden group">
+                    <!-- Premium Background Visual (Laboratory/Biotechnology Core) -->
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=600&q=80" alt="Clinical Biotech Core" class="w-full h-full object-cover opacity-20 group-hover:scale-105 transition-transform duration-1000 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                    </div>
+
+                    <div class="relative z-10 flex justify-between items-center pb-4 border-b border-white/[0.05]">
+                        <div>
+                            <span class="text-slate-500 text-[8px] uppercase tracking-widest block">Simulation Stream</span>
+                            <span class="font-outfit text-xs text-white font-bold block">Telemetry Core</span>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-400 text-[8px] font-mono tracking-widest">Active</span>
+                    </div>
+
+                    <!-- Canvas Graphic overlaid onto aesthetic lab space -->
+                    <div class="relative z-10 flex-1 my-4 flex items-center justify-center">
+                        <canvas id="telemetryCanvas" class="w-full h-full max-h-40"></canvas>
+                    </div>
+
+                    <div class="relative z-10 space-y-4 pt-4 border-t border-white/[0.05]">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <span class="text-slate-500 text-[8px] uppercase tracking-widest block">Mitocore Output</span>
+                                <span class="text-white font-mono text-xs font-bold">94.2% Peak</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 text-[8px] uppercase tracking-widest block">Oxygenation Index</span>
+                                <span class="text-emerald-400 font-mono text-xs font-bold">99.8%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 5. THE PARADIGM ================= -->
+    <section id="paradigm" class="reveal py-24 px-6 relative z-10 border-t border-white/[0.02] bg-slate-950/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-xl mb-16 space-y-3">
+                <span class="text-cyan-400 uppercase tracking-widest text-xs font-bold block">Scientific Pillars</span>
+                <h2 class="text-3xl md:text-5xl font-outfit font-black text-white uppercase leading-tight">Systemic Standards</h2>
+                <div class="h-0.5 w-12 bg-cyan-400"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Pillar 1 -->
+                <div class="premium-card p-8 rounded-2xl space-y-6">
+                    <div class="w-10 h-10 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                    </div>
+                    <h3 class="text-lg font-outfit font-bold text-white">Genomic Sequencing</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed font-light">Comprehensive mapping of cellular methylation layers to precisely isolate biological aging rates from physical years.</p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="premium-card p-8 rounded-2xl space-y-6">
+                    <div class="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5" /></svg>
+                    </div>
+                    <h3 class="text-lg font-outfit font-bold text-white">Targeted Peptide Infusion</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed font-light">Custom therapeutic peptides engineered to clear accumulated metabolic friction and accelerate organ recovery.</p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="premium-card p-8 rounded-2xl space-y-6">
+                    <div class="w-10 h-10 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                    </div>
+                    <h3 class="text-lg font-outfit font-bold text-white">Autonomic Balancing</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed font-light">Neural diagnostics and neuro-protective pathways that manage physiological strain to maintain sharp executive focus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 6. CLINICAL SUITES (CLEAR DESIGN SYSTEM WITH CURATED IMAGES) ================= -->
+    <section id="suites" class="reveal py-24 px-6 relative z-10 border-t border-white/[0.02]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-xl mx-auto mb-16 space-y-3">
+                <span class="text-cyan-400 uppercase tracking-widest text-xs font-bold block">Biotech Modules</span>
+                <h2 class="text-3xl md:text-4xl font-outfit font-black text-white uppercase">Clinical Therapies</h2>
+                <div class="h-0.5 w-8 bg-cyan-400 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Suite 1 -->
+                <div class="premium-card rounded-2xl overflow-hidden flex flex-col justify-between aspect-[4/5] relative group">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80" alt="Mitochondrial Therapy" class="w-full h-full object-cover opacity-15 group-hover:scale-105 group-hover:opacity-25 transition-all duration-700 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 p-8 flex flex-col justify-between h-full">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900 border border-white/5 flex items-center justify-center text-cyan-400">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 text-[9px] uppercase tracking-wider block mb-2">01 // Cell</span>
+                            <h3 class="text-xl font-outfit font-bold text-white mb-2">Mitochondrial Therapy</h3>
+                            <p class="text-slate-400 text-xs font-light leading-relaxed">Direct systemic energy loading via high-purity metabolic cofactor profiles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suite 2 -->
+                <div class="premium-card rounded-2xl overflow-hidden flex flex-col justify-between aspect-[4/5] relative group">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Endocrine Support" class="w-full h-full object-cover opacity-15 group-hover:scale-105 group-hover:opacity-25 transition-all duration-700 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 p-8 flex flex-col justify-between h-full">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900 border border-white/5 flex items-center justify-center text-emerald-400">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 text-[9px] uppercase tracking-wider block mb-2">02 // Endocrine</span>
+                            <h3 class="text-xl font-outfit font-bold text-white mb-2">Endocrine Support</h3>
+                            <p class="text-slate-400 text-xs font-light leading-relaxed">Bespoke hormonal pathways configured strictly to protect cognitive resilience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suite 3 -->
+                <div class="premium-card rounded-2xl overflow-hidden flex flex-col justify-between aspect-[4/5] relative group">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1617791160536-598cf32026fb?auto=format&fit=crop&w=600&q=80" alt="Neuro-Regeneration" class="w-full h-full object-cover opacity-15 group-hover:scale-105 group-hover:opacity-25 transition-all duration-700 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 p-8 flex flex-col justify-between h-full">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900 border border-white/5 flex items-center justify-center text-indigo-400">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 text-[9px] uppercase tracking-wider block mb-2">03 // Brain</span>
+                            <h3 class="text-xl font-outfit font-bold text-white mb-2">Neuro-Regeneration</h3>
+                            <p class="text-slate-400 text-xs font-light leading-relaxed">Systemic peptide delivery arrays targeting synapse connectivity preservation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suite 4 -->
+                <div class="premium-card rounded-2xl overflow-hidden flex flex-col justify-between aspect-[4/5] relative group">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=600&q=80" alt="Genomic Blueprinting" class="w-full h-full object-cover opacity-15 group-hover:scale-105 group-hover:opacity-25 transition-all duration-700 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 p-8 flex flex-col justify-between h-full">
+                        <div class="w-12 h-12 rounded-xl bg-slate-900 border border-white/5 flex items-center justify-center text-cyan-400">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 text-[9px] uppercase tracking-wider block mb-2">04 // DNA</span>
+                            <h3 class="text-xl font-outfit font-bold text-white mb-2">Genomic Blueprinting</h3>
+                            <p class="text-slate-400 text-xs font-light leading-relaxed">Continuous transcriptional verification tracking cellular changes at scale.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 7. INTERACTIVE DIAGNOSTICS ================= -->
+    <section id="diagnostics" class="reveal py-24 px-6 relative z-10 border-t border-white/[0.02] bg-slate-950/20">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6">
+                <span class="text-cyan-400 uppercase tracking-widest text-xs font-bold block">Assessment Lab</span>
+                <h2 class="text-3xl md:text-5xl font-outfit font-black text-white uppercase leading-tight">IDENTIFY YOUR PROTOCOL</h2>
+                <p class="text-slate-400 text-xs md:text-sm leading-relaxed font-light">
+                    Select a wellness objective to inspect physiological benchmarks, recommended molecular sequences, and dynamic tracking capabilities.
+                </p>
+
+                <!-- Clean Tabs -->
+                <div class="flex flex-col sm:flex-row gap-2 pt-2">
+                    <button onclick="switchTab('cell')" id="tab-cell" class="tab-btn px-5 py-3.5 rounded-xl border text-[10px] uppercase tracking-widest font-extrabold transition-all duration-300 bg-cyan-500 border-cyan-500 text-slate-950">
+                        Cellular Vitality
+                    </button>
+                    <button onclick="switchTab('neuro')" id="tab-neuro" class="tab-btn px-5 py-3.5 rounded-xl border text-[10px] uppercase tracking-widest font-extrabold transition-all duration-300 border-white/5 bg-slate-900/40 text-slate-400 hover:text-white">
+                        Neuro Stamina
+                    </button>
+                    <button onclick="switchTab('endocrine')" id="tab-endocrine" class="tab-btn px-5 py-3.5 rounded-xl border text-[10px] uppercase tracking-widest font-extrabold transition-all duration-300 border-white/5 bg-slate-900/40 text-slate-400 hover:text-white">
+                        Endocrine Output
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Diagnostic Panel -->
+            <div class="relative bg-slate-950/60 backdrop-blur-3xl rounded-[32px] p-8 border border-white/[0.05] min-h-[350px] flex flex-col justify-between">
+                <div id="diagnostic-display" class="transition-all duration-500 opacity-100 space-y-6">
+                    <!-- Default State -->
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-cyan-400 uppercase tracking-widest font-mono text-[9px]">Module Code: CE-90</span>
+                            <span class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-2xl font-outfit font-bold text-white uppercase">Cellular Longevity Suite</h3>
+                            <p class="text-slate-400 text-xs font-light leading-relaxed">Focuses on clearing toxic cellular debris, measuring comprehensive epigenetic DNA biomarkers, and stabilizing baseline cellular replication.</p>
+                        </div>
+                        <div class="space-y-3 pt-2">
+                            <div class="flex justify-between text-[10px] uppercase font-mono text-slate-400">
+                                <span>Target Telomere Protection</span>
+                                <span class="text-cyan-400">+14.6% achieved</span>
+                            </div>
+                            <div class="h-1 bg-slate-900 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400" style="width: 88%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-white/5 flex justify-between items-center">
+                    <span class="text-[8px] uppercase tracking-widest text-slate-500 font-mono">Calculated at molecular baseline</span>
+                    <a href="#booking" class="text-[10px] font-bold text-white hover:text-cyan-400 transition-colors flex items-center gap-1.5 uppercase tracking-wider">
+                        Configure <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 8. COHORT ADMISSIONS ================= -->
+    <section id="membership" class="reveal py-24 px-6 relative z-10 border-t border-white/[0.02]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-xl mx-auto mb-20 space-y-3">
+                <span class="text-cyan-400 uppercase tracking-widest text-xs font-bold block">Clinical Access</span>
+                <h2 class="text-3xl md:text-4xl font-outfit font-black text-white uppercase">Admission Programs</h2>
+                <div class="h-0.5 w-8 bg-cyan-400 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                <!-- Tier 1 -->
+                <div class="premium-card p-8 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm uppercase font-bold text-white">Baseline Map</h3>
+                            <span class="text-slate-500 text-[9px] font-mono">Tier 01</span>
+                        </div>
+                        <div>
+                            <span class="text-5xl font-outfit font-black text-white">$149</span>
+                            <span class="text-slate-500 text-xs">/mo</span>
+                        </div>
+                        <ul class="space-y-3.5 text-slate-400 text-xs border-t border-white/5 pt-6 font-light">
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Full epigenetic genome profiling</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Capillary vascular diagnostic panels</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Semi-annual physician reviews</li>
+                        </ul>
+                    </div>
+                    <a href="#booking" class="block text-center border border-white/10 hover:border-cyan-400 hover:text-cyan-400 py-3.5 px-6 rounded-xl text-[10px] uppercase font-bold tracking-wider mt-8 transition-all duration-300">
+                        Initiate Blueprinting
+                    </a>
+                </div>
+
+                <!-- Tier 2 (Highlighted) -->
+                <div class="premium-card p-8 rounded-2xl flex flex-col justify-between border-2 border-cyan-500/80 shadow-xl shadow-cyan-500/5 relative">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm uppercase font-bold text-cyan-400">Total Continuum</h3>
+                            <span class="text-cyan-400/60 text-[9px] font-mono">Tier 02</span>
+                        </div>
+                        <div>
+                            <span class="text-6xl font-outfit font-black text-white">$299</span>
+                            <span class="text-slate-500 text-xs">/mo</span>
+                        </div>
+                        <ul class="space-y-3.5 text-slate-300 text-xs border-t border-white/10 pt-6 font-light">
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Continuous custom infusion therapy sessions</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Continuous epigenetic marker updates</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Direct 24/7 priority physician access</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Comprehensive organ metric reviews</li>
+                        </ul>
+                    </div>
+                    <a href="#booking" class="block text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 py-3.5 px-6 rounded-xl text-[10px] uppercase font-bold tracking-wider mt-8 transition-all duration-300">
+                        Secure Spot
+                    </a>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="premium-card p-8 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-sm uppercase font-bold text-white">Elite Biotech</h3>
+                            <span class="text-slate-500 text-[9px] font-mono">Tier 03</span>
+                        </div>
+                        <div>
+                            <span class="text-5xl font-outfit font-black text-white">$599</span>
+                            <span class="text-slate-500 text-xs">/mo</span>
+                        </div>
+                        <ul class="space-y-3.5 text-slate-400 text-xs border-t border-white/5 pt-6 font-light">
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Complete structural metabolic mapping</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Advanced genomic transcript therapies</li>
+                            <li class="flex items-center"><span class="text-cyan-400 mr-2">✓</span> Custom on-demand cellular optimization</li>
+                        </ul>
+                    </div>
+                    <a href="#booking" class="block text-center border border-white/10 hover:border-cyan-400 hover:text-cyan-400 py-3.5 px-6 rounded-xl text-[10px] uppercase font-bold tracking-wider mt-8 transition-all duration-300">
+                        Apply for Elite Status
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 9. SECURE INTAKE PORTAL ================= -->
+    <section id="booking" class="reveal py-24 px-6 relative z-10 border-t border-white/[0.02]">
+        <div class="max-w-3xl mx-auto bg-slate-900/40 backdrop-blur-2xl p-8 md:p-12 rounded-[32px] border border-white/[0.05] relative overflow-hidden">
+            <div class="text-center mb-10">
+                <span class="text-cyan-400 uppercase tracking-widest text-[10px] font-bold block mb-2 font-mono">Transmission Encryption: Active</span>
+                <h2 class="text-3xl font-outfit font-black text-white uppercase">Request Intake Clearing</h2>
+                <p class="text-slate-500 text-xs mt-2 font-light">Submit your preliminary parameters below to initiate clinical evaluation.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); alert('Transmission securely queued. An intake agent will reach out in 24 hours.');" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-[9px] uppercase tracking-wider text-slate-500 font-bold mb-2 font-mono">Identification</label>
+                    <input type="text" required placeholder="Alex Mercer" class="w-full bg-slate-950/60 border border-white/5 focus:border-cyan-400 px-4 py-3.5 rounded-xl text-xs text-slate-200 focus:outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-[9px] uppercase tracking-wider text-slate-500 font-bold mb-2 font-mono">Biotech Objective</label>
+                    <select class="w-full bg-slate-950/60 border border-white/5 focus:border-cyan-400 px-4 py-3.5 rounded-xl text-xs text-slate-400 focus:outline-none transition-all">
+                        <option>Cellular Methylation & Longevity</option>
+                        <option>Cognitive Re-mapping & Stamina</option>
+                        <option>Endocrine Balance Strategy</option>
+                    </select>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-[9px] uppercase tracking-wider text-slate-500 font-bold mb-2 font-mono">Secure Transmission Endpoint (Email)</label>
+                    <input type="email" required placeholder="alex@mercerlabs.com" class="w-full bg-slate-950/60 border border-white/5 focus:border-cyan-400 px-4 py-3.5 rounded-xl text-xs text-slate-200 focus:outline-none transition-all">
+                </div>
+                <div class="md:col-span-2 mt-4">
+                    <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-emerald-400 hover:from-cyan-400 hover:to-emerald-300 text-slate-950 py-4 rounded-xl text-[10px] uppercase font-extrabold tracking-widest transition-all duration-300 font-outfit">
+                        Initiate Assessment Protocol
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ================= 10. FOOTER ================= -->
+    <footer class="bg-slate-950/80 py-12 text-center text-slate-600 text-[9px] tracking-widest border-t border-white/[0.03] relative z-10">
+        <div class="max-w-7xl mx-auto px-6 space-y-4">
+            <div class="flex items-center justify-center space-x-2">
+                <span class="w-2.5 h-5 bg-gradient-to-tr from-cyan-500 to-emerald-400 rounded-sm"></span>
+                <span class="font-outfit text-sm font-bold tracking-tight text-white">AURA LONGEVITY SYSTEMS</span>
+            </div>
+            <p>Suite 808, Biotech Avenue, Manhattan, NY 10016 // Secure Node NY-404</p>
+            <p class="text-slate-600/60 font-mono">© 2026 Aura Integrative Medicine. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT CONTROLLERS ================= -->
+    <script>
+        // 1. Splash Screen Loader
+        document.addEventListener("DOMContentLoaded", () => {
+            const bar = document.getElementById("splash-bar");
+            const percent = document.getElementById("splash-percent");
+            const status = document.getElementById("splash-status");
+            const splash = document.getElementById("splash-screen");
+            
+            const steps = [
+                { limit: 30, msg: "Aligning cellular matrices..." },
+                { limit: 65, msg: "Establishing secure bio-links..." },
+                { limit: 90, msg: "Calibrating telemetry core..." },
+                { limit: 100, msg: "Neural system loaded." }
+            ];
+            
+            let progress = 0;
+            let currentStepIdx = 0;
+
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 9) + 3;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        splash.classList.add("opacity-0", "pointer-events-none");
+                        document.body.classList.remove("loading-active");
+                        // Trigger scroll reveal initial pass
+                        revealOnScroll();
+                    }, 400);
+                }
+                
+                if (currentStepIdx < steps.length && progress >= steps[currentStepIdx].limit) {
+                    status.innerText = steps[currentStepIdx].msg;
+                    currentStepIdx++;
+                }
+                
+                bar.style.width = `${progress}%`;
+                percent.innerText = `${progress}%`;
+            }, 50);
+
+            initTelemetryCanvas();
+            setupInteractiveParallax();
+            setupScrollReveal();
+        });
+
+        // 2. Interactive Backdrop Mouse-Parallax
+        function setupInteractiveParallax() {
+            const container = document.getElementById("parallax-container");
+            document.addEventListener("mousemove", (e) => {
+                const { clientX, clientY } = e;
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                
+                const moveX = (clientX - centerX) / centerX;
+                const moveY = (clientY - centerY) / centerY;
+
+                const blobs = container.querySelectorAll("div");
+                blobs.forEach((blob) => {
+                    const speed = parseFloat(blob.getAttribute("data-speed")) || 1;
+                    blob.style.transform = `translate(${moveX * 30 * speed}px, ${moveY * 30 * speed}px)`;
+                });
+            });
+        }
+
+        // 3. Scroll Reveal Engine (Intersection Observer)
+        function setupScrollReveal() {
+            const revealElements = document.querySelectorAll(".reveal");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach((el) => observer.observe(el));
+        }
+        
+        // Fallback simple detector
+        function revealOnScroll() {
+            const revealElements = document.querySelectorAll(".reveal");
+            revealElements.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    el.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", revealOnScroll);
+
+        // 4. Clear Diagnostic Tabs Switching
+        function switchTab(tabType) {
+            const display = document.getElementById("diagnostic-display");
+            const buttons = document.querySelectorAll(".tab-btn");
+            
+            buttons.forEach(btn => {
+                btn.className = "tab-btn px-5 py-3.5 rounded-xl border text-[10px] uppercase tracking-widest font-extrabold transition-all duration-300 border-white/5 bg-slate-900/40 text-slate-400 hover:text-white";
+            });
+
+            const activeBtn = document.getElementById(`tab-${tabType}`);
+            activeBtn.className = "tab-btn px-5 py-3.5 rounded-xl border text-[10px] uppercase tracking-widest font-extrabold transition-all duration-300 bg-cyan-500 border-cyan-500 text-slate-950";
+
+            display.style.opacity = "0";
+            
+            setTimeout(() => {
+                if (tabType === 'cell') {
+                    display.innerHTML = `
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-cyan-400 uppercase tracking-widest font-mono text-[9px]">Module Code: CE-90</span>
+                                <span class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
+                            </div>
+                            <div class="space-y-2">
+                                <h3 class="text-2xl font-outfit font-bold text-white uppercase">Cellular Longevity Suite</h3>
+                                <p class="text-slate-400 text-xs font-light leading-relaxed">Focuses on clearing toxic cellular debris, measuring comprehensive epigenetic DNA biomarkers, and stabilizing baseline cellular replication.</p>
+                            </div>
+                            <div class="space-y-3 pt-2">
+                                <div class="flex justify-between text-[10px] uppercase font-mono text-slate-400">
+                                    <span>Target Telomere Protection</span>
+                                    <span class="text-cyan-400">+14.6% achieved</span>
+                                </div>
+                                <div class="h-1 bg-slate-900 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-cyan-400 to-emerald-400" style="width: 88%;"></div>
+                                </div>
+                            </div>
+                        </div>`;
+                } else if (tabType === 'neuro') {
+                    display.innerHTML = `
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-indigo-400 uppercase tracking-widest font-mono text-[9px]">Module Code: NR-44</span>
+                                <span class="h-1.5 w-1.5 rounded-full bg-indigo-400"></span>
+                            </div>
+                            <div class="space-y-2">
+                                <h3 class="text-2xl font-outfit font-bold text-white uppercase">Cognitive Neuro-Regen</h3>
+                                <p class="text-slate-400 text-xs font-light leading-relaxed">Designed to restore synaptic speed and clarity. Implements targeted neuro-peptide sequences to protect cognitive reserves and maintain sharp executive processing.</p>
+                            </div>
+                            <div class="space-y-3 pt-2">
+                                <div class="flex justify-between text-[10px] uppercase font-mono text-slate-400">
+                                    <span>Synaptic Efficiency</span>
+                                    <span class="text-indigo-400">+29.4% peak output</span>
+                                </div>
+                                <div class="h-1 bg-slate-900 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-indigo-500 to-cyan-400" style="width: 94%;"></div>
+                                </div>
+                            </div>
+                        </div>`;
+                } else if (tabType === 'endocrine') {
+                    display.innerHTML = `
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-emerald-400 uppercase tracking-widest font-mono text-[9px]">Module Code: ED-12</span>
+                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            </div>
+                            <div class="space-y-2">
+                                <h3 class="text-2xl font-outfit font-bold text-white uppercase">Endocrine Support</h3>
+                                <p class="text-slate-400 text-xs font-light leading-relaxed">Systemic metabolic balancing using natural physiological precursors to safely rebuild vitality levels, retain muscle index, and normalize baseline sleep patterns.</p>
+                            </div>
+                            <div class="space-y-3 pt-2">
+                                <div class="flex justify-between text-[10px] uppercase font-mono text-slate-400">
+                                    <span>System Balance Index</span>
+                                    <span class="text-emerald-400">100% Calibrated</span>
+                                </div>
+                                <div class="h-1 bg-slate-900 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>`;
+                }
+                display.style.opacity = "1";
+            }, 250);
+        }
+
+        // 5. Clinical Telemetry Line Wave
+        function initTelemetryCanvas() {
+            const canvas = document.getElementById("telemetryCanvas");
+            const ctx = canvas.getContext("2d");
+            
+            function resize() {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            let angle = 0;
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.lineWidth = 1.5;
+                ctx.shadowBlur = 12;
+
+                // Wave 1 - Cyan
+                ctx.strokeStyle = "rgba(6, 182, 212, 0.8)";
+                ctx.shadowColor = "rgba(6, 182, 212, 0.4)";
+                ctx.beginPath();
+                for (let x = 0; x < canvas.width; x++) {
+                    const y = (canvas.height / 2) + Math.sin(x * 0.012 + angle) * 22;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+
+                // Wave 2 - Emerald
+                ctx.strokeStyle = "rgba(16, 185, 129, 0.5)";
+                ctx.shadowColor = "rgba(16, 185, 129, 0.2)";
+                ctx.beginPath();
+                for (let x = 0; x < canvas.width; x++) {
+                    const y = (canvas.height / 2) + Math.sin(x * 0.015 - angle) * 15;
+                    if (x === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+
+                angle += 0.025;
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+    </script>
+</body>
+</html>
